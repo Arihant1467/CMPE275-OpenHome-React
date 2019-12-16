@@ -4,7 +4,6 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-ENV PROXY_HOST="http://localhost:3500"
 
 RUN npm install
 
