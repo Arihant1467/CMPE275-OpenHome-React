@@ -35,6 +35,9 @@ class Home extends Component {
   onGetLocation = (city)=>{
     if(city==="" || city===" "){
       Swal.fire('Oops...', 'There was en error in getting your location', 'error');
+      this.setState({
+        showDemo:false,
+      });
     }else{
       Swal.fire(`We found that you live in ${city} ?`);
       this.setState({
