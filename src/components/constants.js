@@ -6,5 +6,5 @@
 
 export const BASE_URL = process.env.REACT_APP_JAVA_BACKEND==null ? "http://localhost:8080/OpenHome_war/api": process.env.REACT_APP_JAVA_BACKEND;
 export const FRONTEND_URL = "https://cmpe275-savd-openhome.herokuapp.com/";
-export const IMG_RETRIEVE_BASE_URL = process.env.REACT_APP_IMG_RETRIEVE_BASE_URL==null ?  "http://localhost:3500": process.env.REACT_APP_IMG_RETRIEVE_BASE_URL;
+export const IMG_RETRIEVE_BASE_URL = process.env.REACT_APP_IMG_RETRIEVE_BASE_URL==null ?  "https://www.vramesh.de": process.env.REACT_APP_IMG_RETRIEVE_BASE_URL;
 export const API_KEY = process.env.REACT_APP_API_KEY;
