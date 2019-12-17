@@ -12,8 +12,8 @@ class Demo extends React.Component {
     cordsAvailable = (lat,long)=>{
         console.log(lat);
         console.log(long);
+        console.log(`API_KEY:${API_KEY}`);
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${API_KEY}`;
-        
         axios.get(url).then((response)=>{
             console.log(response.data);
             const city = response.data.results[0]['address_components'][3].short_name;
