@@ -20,7 +20,7 @@ class Demo extends React.Component {
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${apiKey}`;
         axios.get(url).then((response)=>{
             console.log(response.data);
-            const city = response.data.results[0]['address_components'][3].short_name;
+            const city = response.data.results[0]['address_components'][0].short_name;
             this.props.onGetLocation(city);
         }).catch((error)=>{
             console.log(error.data);
