@@ -162,7 +162,8 @@ const mapDispatchToProps = (dispatch) =>{
         fetchGoogleUser: async (userdetails)=>{
             
             // axios.defaults.withCredentials = true;
-
+            const url = `${BASE_URL}/signupWithGoogle`;
+            console.log(`URL:${url}`);
             const responsesignup = await axios.post(`${BASE_URL}/signupWithGoogle`,userdetails)
             const {data} = responsesignup;
             
