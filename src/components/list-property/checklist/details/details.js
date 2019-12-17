@@ -32,7 +32,9 @@ class PropertyDetails extends Component {
         const thur = form["thur"]===undefined ? "0":form["thur"];
         const fri = form["fri"]===undefined ? "0":form["fri"];
         const sat = form["sat"]===undefined ? "0":form["sat"];
+        
         const dayAvailibility = sun+mon+tues+wed+thur+fri+sat;
+        
         if(dayAvailibility==="0000000"){
             //alert("Select at least one day to make your property available");
             Swal.fire('Oops...', 'Select at least one day to make your posting browsable', 'error');
