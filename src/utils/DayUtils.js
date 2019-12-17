@@ -63,11 +63,13 @@ const endDate = new Date(end);
 export const generateDayAvailibility = (form)=>{
         const sun = form["sun"]===undefined ? "0":form["sun"];
         const mon = form["mon"]===undefined ? "0":form["mon"];
-        const tues = form["tue"]===undefined ? "0":form["tue"];
+        const tue = form["tue"]===undefined ? "0":form["tue"];
         const wed = form["wed"]===undefined ? "0":form["wed"];
         const thur = form["thur"]===undefined ? "0":form["thur"];
         const fri = form["fri"]===undefined ? "0":form["fri"];
         const sat = form["sat"]===undefined ? "0":form["sat"];
-        const dayAvailibility = sun+mon+tues+wed+thur+fri+sat;
+        const dayAvailibility = sun+mon+tue+wed+thur+fri+sat;
+        console.log("Generated Day Availability");
+        console.log(dayAvailibility);
         return dayAvailibility;
 }

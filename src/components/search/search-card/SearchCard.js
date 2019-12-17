@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import StarRatingComponent from 'react-star-rating-component';
 import ImageGallery from '../../PropertyOverview/ImageGallery/ImageGallery.js'
 
 class SearchCard extends Component {
@@ -13,8 +14,8 @@ class SearchCard extends Component {
     this.props.onSave(this.props.data.propertyId);
   }
 
-  getday = (index)=>{
-    switch(index){
+  getday = (index) => {
+    switch (index) {
       case 0: return "Sun";
       case 1: return "Mon";
       case 2: return "Tues";
@@ -30,8 +31,8 @@ class SearchCard extends Component {
     const { data } = this.props;
 
     let days = [];
-    for(let i=0;i<7;++i){
-      if(data.dayAvailability[i]=="1"){
+    for (let i = 0; i < 7; ++i) {
+      if (data.dayAvailability[i] == "1") {
         days.push(this.getday(i));
       }
     }
@@ -40,7 +41,7 @@ class SearchCard extends Component {
     return (
 
       <section>
-        <div className="row mt-2 ml-4 mr-4" id="row-hover" style={{margin:'2px solid blue',border:'1px solid #81d4fa'}}>
+        <div className="row mt-2 ml-4 mr-4" id="row-hover" style={{ margin: '2px solid blue', border: '1px solid #81d4fa' }}>
           <div className="col-md-4" style={{ margin: '0px' }}>
 
             <ImageGallery photos={data.pictureUrl.split(";")} height="300px" />
@@ -95,23 +96,26 @@ class SearchCard extends Component {
               </thead>
               <tbody>
                 <tr>
-                 
-                  <td>{data.hasPrivateBr==0 ? 'No':'Yes'}</td>
-                  <td>{data.hasPrivateShower==0 ?'No':'Yes'}</td>
+
+                  <td>{data.hasPrivateBr == 0 ? 'No' : 'Yes'}</td>
+                  <td>{data.hasPrivateShower == 0 ? 'No' : 'Yes'}</td>
                   <td>{data.noOfBedrooms}</td>
                   <td>{data.wifi}</td>
-                  <td>{data.smokingAllowed==0? 'No':'Yes'}</td>
-                  <td>{data.onsiteLaundry==0? 'No':'Yes'}</td>
-                  <td>{data.cityView==0? 'No':'Yes'}</td>
-                  <td>{data.parkingAvailable==0? 'No':'Yes'}</td>
+                  <td>{data.smokingAllowed == 0 ? 'No' : 'Yes'}</td>
+                  <td>{data.onsiteLaundry == 0 ? 'No' : 'Yes'}</td>
+                  <td>{data.cityView == 0 ? 'No' : 'Yes'}</td>
+                  <td>{data.parkingAvailable == 0 ? 'No' : 'Yes'}</td>
                   <td>{days.parkingPay}</td>
                   <td>{days.dailyParkingFee}</td>
                 </tr>
               </tbody>
             </table>
 
-
-
+            <StarRatingComponent
+              name="Rating" 
+              value={ parseInt(data.avgRating==null? 0:data.avgRating,10)} 
+              editing={false} 
+            />
           </div>
         </div>
       </section>

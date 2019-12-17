@@ -344,7 +344,7 @@ class Search extends Component {
                 <div style={{ marginBottom: '5rem', display: visibleBlock ? 'none' : 'block' }}>
                     {
                         resultsSlice.map((search, index) => {
-                            return (<SearchCard data={search} key={index} onSave={this.showPropertyHandler} />);
+                            return (<SearchCard data={search} key={search.propertyId} onSave={this.showPropertyHandler} />);
                         })
                     }
                 </div>
