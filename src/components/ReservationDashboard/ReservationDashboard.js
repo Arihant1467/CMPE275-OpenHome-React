@@ -9,7 +9,7 @@ class ReservationDashboard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            userid : this.props.match.params.userid,
+            userid : this.props.match.params.ownerid,
             results:[],
             reservationType:"ALL",
             stepper :1,
@@ -22,6 +22,8 @@ class ReservationDashboard extends Component {
     }
 
     componentDidMount(){
+
+        console.log("user id" +this.props.match.params.ownerid)
         
         const url = BASE_URL+"/hostReservations/?email="+this.state.userid;
         axios.get(url).then((response)=>{
@@ -59,8 +61,8 @@ class ReservationDashboard extends Component {
     else if(e.target.value === 'PAST') {
 
         const temp = this.state.allResults.filter(res => 
-            res.checkIn != null && res.checkOut != null
-    );
+            (res.checkIn != null && res.checkOut != null )|| res.isCancelled );
+    
 
     this.setState({ results : temp});
 

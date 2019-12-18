@@ -59,7 +59,7 @@ class UserDashboard extends Component {
     else if(e.target.value === 'PAST') {
 
         const temp = this.state.allResults.filter(res => 
-            res.checkIn != null && res.checkOut != null
+            (res.checkIn != null && res.checkOut != null )|| res.isCancelled 
     );
 
     this.setState({ results : temp});

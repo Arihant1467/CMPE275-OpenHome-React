@@ -47,7 +47,7 @@ class ReservationCard extends Component {
 
 
       this.setState({
-        reviews : trip.reservationReview != null
+        reviews : trip.userReview != null
       } );
 
       let temp ="";
@@ -81,7 +81,7 @@ class ReservationCard extends Component {
     }
 
     console.log(JSON.stringify(body))
-    axios.post(`${BASE_URL}/postingRating`,body).then((response)=>{
+    axios.post(`${BASE_URL}/userRating`,body).then((response)=>{
         // alert("You have successfully booked the property");
         Swal.fire({
             title: "Rating received!",
@@ -221,13 +221,14 @@ class ReservationCard extends Component {
    const trip = this.props.data; 
 
     console.log("i m in rating")
+    console.log(JSON.stringify(trip))
 
       if(!this.state.reviews ) {
         console.log("inside if")
         return (
           <div  style = { { left : "1000px", top : "10px"}}>
           <hr></hr>
-          <h2> How did you like your stay with us, please let us know.. </h2>
+          <h2> Dear host, please rate guest for this booking.. </h2>
 
           <div style = { { left : "1000px", width : "500px"}}>
 
@@ -278,7 +279,7 @@ class ReservationCard extends Component {
 
        <strong> &nbsp;&nbsp;&nbsp;&nbsp; Review - </strong>
 
-        {trip.reservationReview}
+        {trip.userReview}
 
        
         </div>
@@ -323,13 +324,7 @@ class ReservationCard extends Component {
 
                 <div className="col-md-7" >
                       <div className="row">
-                          <div className="col-md-4">
-                            <button type="submit" className="btn btn-primary btn-block" disabled= {this.state.checkInState}  onClick={this.checkIn(trip.bookingId)}> Check In </button>
-                          </div>
-                          <div className="col-md-4">
-                            <button type="submit" className="btn btn-primary btn-block"   disabled= {this.state.checkOutState}  onClick={this.checkOut(trip.bookingId)}> Check Out </button>
-                        
-                          </div>
+         
                           <div className="col-md-4">
                             <button type="submit" className="btn btn-primary btn-block"   disabled= {this.state.cancelled}  onClick={this.cancel(trip.bookingId)}  > Cancel Reservation </button>
                           </div>
