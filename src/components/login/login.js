@@ -138,10 +138,7 @@ const mapDispatchToProps = (dispatch) =>{
     return{
         fetchUser: async (userdata)=>{
             
-           // axios.defaults.withCredentials = true;
-           
             const response = await axios.post(`${BASE_URL}/login`,userdata);
-            
             const {data} = response;
             console.log(response.status)
             localStorage.setItem("signedUp","false")
@@ -161,9 +158,8 @@ const mapDispatchToProps = (dispatch) =>{
         },
         fetchGoogleUser: async (userdetails)=>{
             
-            // axios.defaults.withCredentials = true;
+            
             const url = `${BASE_URL}/signupWithGoogle`;
-            console.log(`URL:${url}`);
             const responsesignup = await axios.post(`${BASE_URL}/signupWithGoogle`,userdetails)
             const {data} = responsesignup;
             

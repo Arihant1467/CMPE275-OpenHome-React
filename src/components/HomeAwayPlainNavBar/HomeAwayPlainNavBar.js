@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { advanceTimeStyle } from './../../components/home/HomeNavBar/homenavbarstyle.js';
+import Logo from './../../logo/openhome.png';
 
 class HomeAwayPlainNavBar extends Component {
     
@@ -14,7 +15,7 @@ class HomeAwayPlainNavBar extends Component {
             <div className="row w-100 add-border-signup pb-3" style={{ backgroundColor: '#FFFFFF', height: '80px', borderTopStyle: 'none', borderLeftStyle: 'none', borderRightStyle: 'none' }}>
                 <div className="col-md-1"></div>
                 <div className="col-md-2">
-                    <Link to="/home"> <img className="mt-2" src="https://storage.cloud.google.com/open-home/openhome-logo.png" alt="Open Home" /> </Link>
+                    <Link to="/home"> <img className="mt-2" src={Logo} alt="Open Home" /> </Link>
                 </div>
                 <div className="col-md-4"></div>
                 <div className="col-md-2">

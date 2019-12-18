@@ -23,19 +23,22 @@ class OwnerDashboard extends Component {
     }
 
     componentDidMount(){
-    const {noOfRecordsPerPage} = this.state;
+    const {noOfRecordsPerPage,userid} = this.state;
     const data = {
-        "email" : this.state.userid
+        "email" : userid
     }
         axios.post(`${BASE_URL}/getUserProperties`,data).then((response)=>{
                 if(response.status === 200){
                     const results = response.data;
                     const minPages=1;
-                    const maxPages=parseInt(results.length/noOfRecordsPerPage,10)+1;
+                    const maxPages=parseInt(results.length/noOfRecordsPerPage,10);
                     this.setState({ results,minPages,maxPages});
                 }else{
                     alert("There was an error in fetching your properties");
                 }
+        }).catch((error)=>{
+            console.log(`In Owner dashboard.js ${error.data}`)
+            Swal.fire('Oops...', `There was an error in fetching your properties`, 'error')
         });
     }
 
@@ -58,10 +61,32 @@ class OwnerDashboard extends Component {
         console.log("Updated success msg");
         console.log("posting ID",id);
         // alert(msg);
+        // Swal.fire({
+        //     title: "Congratulations!",
+        //     text: msg,
+        // });
+
         Swal.fire({
-            title: "Congratulations!",
+            title: "Successfully updated!",
             text: msg,
-        })
+        }).then(()=>{
+            const {noOfRecordsPerPage,userid} = this.state;
+            const data = {  "email" : userid    };
+            console.log("Here in success");
+            axios.post(`${BASE_URL}/getUserProperties`,data).then((response)=>{
+                if(response.status === 200){
+                    const results = response.data;
+                    const minPages=1;
+                    const maxPages=parseInt(results.length/noOfRecordsPerPage,10);
+                    this.setState({ results,minPages,maxPages});
+                }
+        }).catch((error)=>{
+            console.log(`In Owner dashboard.js ${error.data}`)
+            Swal.fire('Oops...', `There was an error in fetching your properties`, 'error')
+        });
+
+            // this.setState({ complete: true });
+        });
         
     }
 
@@ -126,7 +151,7 @@ class OwnerDashboard extends Component {
                     {
                         resultsSlice.map((res,index)=>{
                                 return (
-                                    <OwnerCard data={res} key={index} onUpdateSuccess={this.updateSuccess} onUpdateError={this.updateError} />
+                                    <OwnerCard data={res} key={res.propertyId} onUpdateSuccess={this.updateSuccess} onUpdateError={this.updateError} />
                                 );
                         })
                     }

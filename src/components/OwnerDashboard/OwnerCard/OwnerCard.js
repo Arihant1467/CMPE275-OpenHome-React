@@ -41,11 +41,10 @@ class OwnerCard extends Component {
       weekendRent
     };
 
-    console.log("owner card edit body");
     console.log(body);
     
-    
     axios.put(`${BASE_URL}/postingAdd`,body).then((response)=>{
+      console.log('response after editing property');
       console.log(response.data);
       if(response.status===200){
         this.props.onUpdateSuccess(response.data,this.props.data.propertyId);
@@ -66,12 +65,13 @@ class OwnerCard extends Component {
       }
     }
 
-    const {startDate, endDate, dayAvailability} = this.props.data;
+    const {startDate, endDate} = this.props.data;
+    const  {dayAvailability} = property;
     const {weekendRent, weekRent} = this.props.data;
     const {editProperty} = this.state;
     const formStyle = {display: editProperty?'block':'none'};
     console.log(`Edit property:${editProperty}`);
-    console.log(dayAvailability);
+    console.log(`Day Availability ${dayAvailability}`);
 
     return (
 
@@ -117,7 +117,7 @@ class OwnerCard extends Component {
                             <label className="form-label">Start Date</label>
                         </div>
                         <div className="selector child-margin" style={{ marginTop: '20px' }}>
-                            <input type="date" className="form-control no-bg" id="startDate" name="startDate" defaultValue={new Date(startDate).toISOString().split('T')[0]}  style={{ border: 'none', background: 'transparent',fontSize:'15px' }} required />
+                            <input type="date" className="form-control no-bg" name="startDate" defaultValue={new Date(startDate).toISOString().split('T')[0]}  style={{ border: 'none', background: 'transparent',fontSize:'15px' }} required />
                         </div>
               </div>
 
@@ -126,7 +126,7 @@ class OwnerCard extends Component {
                             <label className="form-label">End Date</label>
                         </div>
                         <div className="selector child-margin" style={{ marginTop: '20px' }}>
-                            <input type="date" className="form-control no-bg" id="startDate" name="endDate" defaultValue={new Date(endDate).toISOString().split('T')[0]}  style={{ border: 'none', background: 'transparent',fontSize:'15px' }} required />
+                            <input type="date" className="form-control no-bg"  name="endDate" defaultValue={new Date(endDate).toISOString().split('T')[0]}  style={{ border: 'none', background: 'transparent',fontSize:'15px' }} required />
                         </div>
               </div>
 
@@ -155,37 +155,38 @@ class OwnerCard extends Component {
                             <div className="selector" style={{ margin: '20px 0px 0px 3px' }}>
 
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[0]==="1"} id="sun" name="sun" value="1" />
+                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[0]==="1"}  name="sun" value="1" />
                                     <label className="form-check-label" htmlFor="sun">Sunday</label>
+
                                 </div>
 
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[1]==="1"} id="mon" name="mon" value="1" />
+                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[1]==="1"}  name="mon" value="1" />
                                     <label className="form-check-label" htmlFor="mon">Monday</label>
                                 </div>
 
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[2]==="1"} id="tue" name="tue" value="1" />
+                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[2]==="1"}  name="tue" value="1" />
                                     <label className="form-check-label" htmlFor="tue">Tuesday</label>
                                 </div>
 
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[3]==="1"} id="wed" name="wed" value="1" />
+                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[3]==="1"}  name="wed" value="1" />
                                     <label className="form-check-label" htmlFor="wed">Wednesday</label>
                                 </div>
 
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[4]==="1"} id="thur" name="thur" value="1" />
+                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[4]==="1"}  name="thur" value="1" />
                                     <label className="form-check-label" htmlFor="thur">Thursday</label>
                                 </div>
 
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[5]==="1"} id="fri" name="fri" value="1" />
+                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[5]==="1"}  name="fri" value="1" />
                                     <label className="form-check-label" htmlFor="fri">Friday</label>
                                 </div>
 
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[6]==="1"} id="sat" name="sat" value="1" />
+                                    <input className="form-check-input" type="checkbox" defaultChecked={dayAvailability[6]==="1"}  name="sat" value="1" />
                                     <label className="form-check-label" htmlFor="sat">Saturday</label>
                                 </div>
 
