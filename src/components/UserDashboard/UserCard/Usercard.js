@@ -146,8 +146,14 @@ class UserCard extends Component {
       })
       .catch(error =>
         { 
-            
-            alert(error.response.data)
+
+          Swal.fire({
+            title: "Error",
+            text: error.response.data
+        }).then(()=>{
+          console.log(error.response.data);
+        });
+      
         }
       )
     }
