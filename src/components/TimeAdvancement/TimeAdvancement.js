@@ -3,6 +3,7 @@ import axios from 'axios';
 import HomeNavBar from '../home/HomeNavBar/homenavbar.js';
 import {BASE_URL} from '../constants.js';
 import HomeAwayPlainNavBar from './../HomeAwayPlainNavBar/HomeAwayPlainNavBar.js';
+import Swal from 'sweetalert2';
 
 
 class TimeAdvancement extends Component{
@@ -63,7 +64,6 @@ class TimeAdvancement extends Component{
             date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec 
         } );
 
-
           axios({
             method : 'PUT',
             url:`${BASE_URL}/changeTime`,
@@ -72,8 +72,7 @@ class TimeAdvancement extends Component{
               
             },
             data : "#"+this.state.date 
-          }
-          )
+          })
           .then((result) => {
             console.log("result"+result)
             alert("Date set back to current time");
@@ -91,6 +90,7 @@ class TimeAdvancement extends Component{
 
     changeTime =() =>{
 
+    
 
         axios({
             method : 'PUT',
@@ -103,15 +103,30 @@ class TimeAdvancement extends Component{
           }
           )
           .then((result) => {
+    
+           
+
+
+            Swal.fire({
+              title:"Request success",
+              text: "Date advanced"
+          }).then(()=>{
             console.log("result"+result)
-            alert("Date changed");
+          });
+  
            
             //Grey out checkin
           })
           .catch(error =>
             { 
-                
-        console.log(error.data)
+
+              Swal.fire({
+                title:"Error",
+                text: error.response.data
+            }).then(()=>{
+              console.log(error.response.data);
+            });
+    
             }
           )
 
@@ -149,16 +164,10 @@ class TimeAdvancement extends Component{
         return ( 
 
             <div>
-
-   
                 
             <div style={style1}>
 
             <HomeAwayPlainNavBar />
-
-      
- 
-           
                 
                     <div align= "center"  style={style2}>
 
