@@ -306,11 +306,6 @@ class UserCard extends Component {
 
        
         </div>
-
-
-     
-            
-     
         </div>
 
         );
@@ -326,9 +321,8 @@ class UserCard extends Component {
        console.log("***** Trip ****"+JSON.stringify(trip) )
 
        //Change the URL
-       const url = FRONTEND_URL+"/overview/"+trip.postingId
-
-      
+      // const url = FRONTEND_URL+"overview/"+trip.postingId;
+       const url = "/overview/"+trip.postingId
         
         return ( 
           <div className="row-style ">

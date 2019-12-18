@@ -83,7 +83,7 @@ class Checklist extends Component {
         }, () => {
 
             this.moveToSelected("photos");
-            // this.moveToSelected("pricing");
+            
         });
     }
 
@@ -167,10 +167,8 @@ class Checklist extends Component {
         posting["userId"] = ownerEmailId;
         posting["contactNumber"]=propertyData.property.contactNumber;
         posting["avgRating"]=5
-        //posting["pictureUrl"]="http://www.sample/image.jpeg";
         posting["pageViews"]=0;
         
-
         const multipartConfig = {
             headers:{
                 'Content-Type':'multipart/form-data'
