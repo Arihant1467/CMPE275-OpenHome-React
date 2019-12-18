@@ -20,6 +20,7 @@ import VerifyAccount from './VerifyAcccount';
 import Payments from './payments/payments';
 import TimeAdvancement from './TimeAdvancement/TimeAdvancement.js';
 import Transaction from './TransactionHistory/Transaction';
+import ReservationDashboard from './ReservationDashboard/ReservationDashboard.js'
 
 
 
@@ -43,6 +44,7 @@ class Main extends Component {
 
                 <Route exact path ="/overview/:propertyid" component={PropertyOverview} />
                 <Route exact path = "/ownerdashboard/:ownerid" component = {OwnerDashboard} />
+                <Route exact path = "/hostReservations/:ownerid" component = {ReservationDashboard} />
                 <Route exact path = "/userdashboard/:userid" component = {UserDashboard} />
                 <Route exact path = "/propertyconfirmation" component = {PropertyListingConfirmation} />
                 <Route exact path = "/userprofile/:userid" component = {UserProfile} />

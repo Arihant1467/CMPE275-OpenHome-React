@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './Usercard.css';
+import './Reservationcard.css';
 import axios from 'axios';
 import {BASE_URL,FRONTEND_URL} from '../../constants.js';
 import StarRatingComponent from 'react-star-rating-component';
 import Swal from 'sweetalert2';
 
 
-class UserCard extends Component {
+class ReservationCard extends Component {
 
     constructor(props){
         super(props);
@@ -125,16 +125,7 @@ class UserCard extends Component {
         this.setState({
           checkInState : true
         } );
-
-
-        this.setState({
-          cancelled : true
-        } );
-
-      
-
-
-       
+        //Grey out checkin
       })
       .catch(error =>
         { 
@@ -167,10 +158,6 @@ class UserCard extends Component {
 
         this.setState({
           checkoutState : true
-        } );
-
-        this.setState({
-          cancelled : true
         } );
       
       })
@@ -207,13 +194,6 @@ class UserCard extends Component {
           cancelled : true
         } );
 
-        this.setState({
-          checkoutState : true
-        } );
-
-        this.setState({
-          checkInState : true
-        } );
       })
       .catch(error =>
         { 
@@ -242,11 +222,7 @@ class UserCard extends Component {
 
     console.log("i m in rating")
 
-    if(trip.checkOut == null) {
-        return ;
-    }
-
-      else if(!this.state.reviews ) {
+      if(!this.state.reviews ) {
         console.log("inside if")
         return (
           <div  style = { { left : "1000px", top : "10px"}}>
@@ -393,6 +369,6 @@ class UserCard extends Component {
     }
 }
  
-export default UserCard;     
+export default ReservationCard;     
 
 // <button onClick = {this.announcement.bind(this)} class="btn btn-success btn-md"> + Make announcement</button> */

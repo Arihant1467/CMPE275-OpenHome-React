@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import UserCard from './UserCard/Usercard';
+import Reservationcard from './ReservationCard/Reservationcard';
 import axios from 'axios';
-import HomeAwayPlainNavBar from './../HomeAwayPlainNavBar/HomeAwayPlainNavBar.js';
+import HomeAwayPlainNavBar from '../HomeAwayPlainNavBar/HomeAwayPlainNavBar.js';
 import {BASE_URL} from '../constants.js';
 
-class UserDashboard extends Component {
+class ReservationDashboard extends Component {
     
     constructor(props){
         super(props);
@@ -23,7 +23,7 @@ class UserDashboard extends Component {
 
     componentDidMount(){
         
-        const url = BASE_URL+"/guestReservations/?email="+this.state.userid;
+        const url = BASE_URL+"/hostReservations/?email="+this.state.userid;
         axios.get(url).then((response)=>{
                 console.log(response);
                 if(response.status === 200){
@@ -150,7 +150,7 @@ class UserDashboard extends Component {
                             <select name="reservationType" className="no-bg" style={{ border: '0.3px solid grey' }}  value={this.state.condition} onChange={this.conditionChangeHandler}> >
                                 <option selected value="ALL">ALL</option>
                                 <option value="FUTURE">UPCOMING</option>
-                                <option value="PRESENT">ONGOING</option>
+                                <option value="PRESENT">PRESENT</option>
                                 <option value="PAST">PAST</option>
                             </select>
                         </div>
@@ -168,7 +168,7 @@ class UserDashboard extends Component {
                     {
                         results.map((trip,index)=>{
                                 return (
-                                    <UserCard data={trip} key={index} />
+                                    <Reservationcard data={trip} key={index} />
                                 );
                         })
                     }    
@@ -180,4 +180,4 @@ class UserDashboard extends Component {
     }
 }
  
-export default UserDashboard;
+export default ReservationDashboard;
