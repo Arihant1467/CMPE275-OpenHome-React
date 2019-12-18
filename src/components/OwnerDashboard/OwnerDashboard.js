@@ -93,8 +93,8 @@ class OwnerDashboard extends Component {
     deletePosting = (postingId)=>{
         console.log("Insided delete posting");
         console.log(postingId);
-        const body = {id:postingId};
-        axios.delete(`${BASE_URL}/posting`,body).then((response)=>{
+       // const body = {id:postingId};
+        axios.delete(`${BASE_URL}/posting`, postingId).then((response)=>{
             Swal.fire({
                 title: "Congratulations!",
                 text: "You have deleted the posting",
