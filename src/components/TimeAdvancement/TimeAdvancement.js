@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import HomeNavBar from '../home/HomeNavBar/homenavbar.js';
 import {BASE_URL} from '../constants.js';
+import HomeAwayPlainNavBar from './../HomeAwayPlainNavBar/HomeAwayPlainNavBar.js';
 
 
 class TimeAdvancement extends Component{
@@ -157,8 +158,13 @@ class TimeAdvancement extends Component{
         return ( 
 
             <div>
+
+   
                 
             <div style={style1}>
+
+            <HomeAwayPlainNavBar />
+
       
  
            
