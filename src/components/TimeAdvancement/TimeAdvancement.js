@@ -115,15 +115,6 @@ class TimeAdvancement extends Component{
             }
           )
 
-        
-        // axios.post(`${BASE_URL}/posting/search`).then((response)=>{
-                
-        //         if(response.status === 200){
-        //             alert(response.data);
-        //         }else{
-        //             alert("Sorry!!  You can't chane time now.. try again later")
-        //         }
-        // });
     }
 
 

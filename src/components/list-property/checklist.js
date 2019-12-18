@@ -166,6 +166,7 @@ class Checklist extends Component {
         posting["parkingPay"] = parseInt(propertyData.property.parkingPay, 10);
         posting["userId"] = ownerEmailId;
         posting["contactNumber"]=parseInt(propertyData.property.contactNumber,10);
+        posting["avgRating"]=5
         //posting["pictureUrl"]="http://www.sample/image.jpeg";
         posting["pageViews"]=0;
         
@@ -207,6 +208,9 @@ class Checklist extends Component {
                 'Content-Type': 'application/json'
             }
         }
+
+        console.log("Posting data to be sent");
+        console.log(posting)
         const response = await axios.post(`${BASE_URL}/posting`, posting, config);
         
         if (response.status === 200) {
