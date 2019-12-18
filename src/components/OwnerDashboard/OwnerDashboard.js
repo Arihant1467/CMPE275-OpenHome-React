@@ -90,6 +90,36 @@ class OwnerDashboard extends Component {
         
     }
 
+    deletePosting = (postingId)=>{
+        console.log("Insided delete posting");
+        //console.log(postingId);
+
+        const { postId } = postingId;
+        //const body = {id:postingId};
+        axios.delete(`${BASE_URL}/posting/${postingId}`).then((response)=>{
+            Swal.fire({
+                title: "Congratulations!",
+                text: "You have deleted the posting",
+            }).then(async ()=>{
+                const {noOfRecordsPerPage,userid} = this.state;
+                const data = {  "email" : userid    };
+                console.log("Here in success");
+                try{
+                    const resp = await axios.post(`${BASE_URL}/getUserProperties`,data);
+                    const results = resp.data;
+                    console.log(resp);
+                    const minPages=1;
+                    const maxPages=parseInt(results.length/noOfRecordsPerPage,10);
+                    this.setState({ results,minPages,maxPages});
+    
+                }catch(error){
+                    console.log("In error of fetch after delete");
+                }
+                
+            })
+        })
+    }
+
     updateError= (msg,id)=>{
         console.log("Updated error msg");
         console.log("posting ID",id);
@@ -151,7 +181,7 @@ class OwnerDashboard extends Component {
                     {
                         resultsSlice.map((res,index)=>{
                                 return (
-                                    <OwnerCard data={res} key={res.propertyId} onUpdateSuccess={this.updateSuccess} onUpdateError={this.updateError} />
+                                    <OwnerCard data={res} key={res.propertyId} onUpdateSuccess={this.updateSuccess} onUpdateError={this.updateError} onDeletePosting={this.deletePosting} />
                                 );
                         })
                     }

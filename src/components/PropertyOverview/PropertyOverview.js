@@ -79,7 +79,7 @@ class PropertyOverview extends Component {
         const { startDate, endDate } = this.state;
         const { numberOfWeekends,numberOfWeekdays } = this.getNumberOfWeekDaysAndWeekEnds(startDate,endDate);
         const bookingCost = numberOfWeekends*weekendRent + numberOfWeekdays*weekRent;
-        const dayAvailibility = getWeekRepresentation(startDate.toISOString().split('T')[0],endDate.toISOString().split('T')[0]);
+        const dayAvailability = getWeekRepresentation(startDate.toISOString().split('T')[0],endDate.toISOString().split('T')[0]);
 
         const body = {
             "hostEmailId": userId,
@@ -91,7 +91,7 @@ class PropertyOverview extends Component {
             "isCancelled": 0,
             "checkIn": null,
             "checkOut": null,
-            dayAvailibility
+            dayAvailability
         }
 
         axios.post(`${BASE_URL}/reservation`,body).then((response)=>{

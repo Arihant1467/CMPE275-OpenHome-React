@@ -46,7 +46,7 @@ class PropertyPricing extends Component {
                                 <label className="form-label">Contact Number</label>
                             </div>
                             <div className="street-address child-margin">
-                                <input type="text" maxLength="20" minLength="1" name="contactNumber" placeholder="123456789" />
+                                <input type="text" maxLength="10" minLength="10" name="contactNumber" placeholder="1234567890" />
                             </div>
                         </div>
 

@@ -7,3 +7,4 @@ export const SEARCH_FIELDS = "SEARCH_FIELDS";
 export const SEARCH_RESULTS = "SEARCH_RESULTS";
 export const UPDATE_STEPPER = "UPDATE_STEPPER";
 export const LOG_OUT = "LOG_OUT";
+export const FETCH_SERVER_TIME = "FETCH_SERVER_TIME"
