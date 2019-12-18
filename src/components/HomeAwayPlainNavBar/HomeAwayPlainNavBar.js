@@ -26,7 +26,7 @@ class HomeAwayPlainNavBar extends Component {
                     <img src="https://img.icons8.com/color/64/000000/cottage.png" />
                 </div>
                 <div className="col-md-2">
-                   <h2>Welcome {JSON.stringify(this.props.user)==="{}"?"Guest" : this.props.user.userid}</h2>
+                   <h3>Welcome {JSON.stringify(this.props.user)==="{}"?"Guest" : this.props.user.userid}</h3>
                 </div>
             </div>
           );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Usercard.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import {BASE_URL,FRONTEND_URL} from '../../constants.js';
 import StarRatingComponent from 'react-star-rating-component';
 import Swal from 'sweetalert2';
@@ -365,13 +366,21 @@ class UserCard extends Component {
                </div>
             
 
-            <div className="row">
-              <h3>Status {this.state.status} </h3>
-              <hr></hr>
+            <div className="row justify-content-centre">
+                <div className="col-md-9">
+                  <h3>Status {this.state.status} </h3>
+                  <hr></hr>
+                </div>
+
+                <div className="col-md-3">
+                  <h3>Booking Cost: ${trip.bookingCost} </h3>
+                  <hr></hr>
+                </div>
+              
             </div>
 
             <div className="row">
-              <h3><a href={url}>View your Reservation </a></h3>
+              <h3> <Link target="_blank" to={url}>View Your Reserved Place </Link></h3>
             </div>
            
           </div>
