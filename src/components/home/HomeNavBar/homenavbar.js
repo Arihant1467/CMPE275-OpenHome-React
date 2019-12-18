@@ -41,6 +41,7 @@ class HomeNavBar extends Component {
         let registerCards="#";
         let inboxUrl = "#";
         let timeAdvancement = "#";
+        let hostReservationsurl = '#';
 
         if (this.state.loginButtonClicked) {
             redirectVar = <Redirect to="/login" />
@@ -58,6 +59,7 @@ class HomeNavBar extends Component {
             transactionHistory=`/transactions/${userid}`;
             registerCards = `/registerCard/${userid}`;
             timeAdvancement = `/timeAdvancement`;
+            hostReservationsurl = `/hostReservations/${userid}`
         }
 
         const isHost = (JSON.stringify(this.props.user)!=="{}" && this.props.user.usertype==="HOST")
@@ -78,6 +80,12 @@ class HomeNavBar extends Component {
 				            </Link>
                         </li>
 
+                        <li className="nav-item" style={{ display: isHost ? 'block' : 'none' }}>
+                      
+                            <Link className="btn btn-lg text-center" to={hostReservationsurl} style={linkStyle}>
+                                Host Reservations
+				            </Link>
+                        </li>
                         <li className="nav-item" style={{ display: isHost ? 'block' : 'none' }}>
                             <Link className="btn btn-lg text-center" to="/checklist" style={linkStyle}>
                                 List Your Property
