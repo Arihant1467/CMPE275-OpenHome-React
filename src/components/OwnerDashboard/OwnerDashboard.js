@@ -92,9 +92,11 @@ class OwnerDashboard extends Component {
 
     deletePosting = (postingId)=>{
         console.log("Insided delete posting");
-        console.log(postingId);
-       // const body = {id:postingId};
-        axios.delete(`${BASE_URL}/posting`, postingId).then((response)=>{
+        //console.log(postingId);
+
+        const { postId } = postingId;
+        //const body = {id:postingId};
+        axios.delete(`${BASE_URL}/posting/${postingId}`).then((response)=>{
             Swal.fire({
                 title: "Congratulations!",
                 text: "You have deleted the posting",
@@ -105,6 +107,7 @@ class OwnerDashboard extends Component {
                 try{
                     const resp = await axios.post(`${BASE_URL}/getUserProperties`,data);
                     const results = resp.data;
+                    console.log(resp);
                     const minPages=1;
                     const maxPages=parseInt(results.length/noOfRecordsPerPage,10);
                     this.setState({ results,minPages,maxPages});
