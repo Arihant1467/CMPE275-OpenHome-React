@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import cookie from 'react-cookies';
+import {FETCH_SERVER_TIME} from '../../actions/types'
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { linkStyle, navBtnUserStyle, navBarStyle } from './homenavbarstyle.js';
@@ -61,7 +63,10 @@ class HomeNavBar extends Component {
             timeAdvancement = `/timeAdvancement`;
             hostReservationsurl = `/hostReservations/${userid}`
         }
-
+        const serverTime = this.props.serverTime;
+        const {year,dayOfMonth,monthValue,hours,min,sec} = serverTime
+        const timeString = year + '/' + monthValue + '/' + dayOfMonth + ' ' + hours + ':' + min + ':' + sec; 
+        console.log(`TImestring: ${timeString}`);
         const isHost = (JSON.stringify(this.props.user)!=="{}" && this.props.user.usertype==="HOST")
         const isGuest = (JSON.stringify(this.props.user)!=="{}" && this.props.user.usertype==="GUEST")
         return (
@@ -71,10 +76,20 @@ class HomeNavBar extends Component {
                     <div className="ml-3" style={navBarStyle} >
                         <h1 style={{ color: 'white' }}>OpenHome</h1>
                     </div>
-                    <ul className="navbar-nav ml-auto mr-3">
+                    <ul className="navbar-nav ml-auto">
+
+
+                    <li className="nav-item">
+                      <Link style={{ pointerEvents: 'none' }} className="btn btn-lg text-center" to="" style={linkStyle}>
+                                Server Time: {timeString}
+				        </Link>
+                    </li>
+
+                    <li className="nav-item" >
+                            <Link className="btn btn-lg text-center" target="_blank" style={linkStyle} to="/timeAdvancement">Advance time</Link>
+                        </li>
 
                         <li className="nav-item" style={{ display: isGuest ? 'block' : 'none' }}>
-                      
                             <Link className="btn btn-lg text-center" to={tripBoardsUrl} style={linkStyle}>
                                 Reservations
 				            </Link>
@@ -92,9 +107,7 @@ class HomeNavBar extends Component {
 				            </Link>
                             
                         </li>
-                        <li className="nav-item" >
-                            <Link className="btn btn-lg text-center" target="_blank" style={linkStyle} to="/timeAdvancement">Advance time</Link>
-                        </li>
+                        
 
                         <li className="nav-item dropdown">
                             <div className="btn-group">
@@ -121,4 +134,30 @@ class HomeNavBar extends Component {
     }
 }
 
-export default HomeNavBar;
+
+
+const mapStateToProps = (state) => {
+    const { user,serverTime } = state;
+    console.log("In mapStateToProps of navbar");
+    console.log(state.serverTime);
+    return {
+        user,
+        serverTime
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      fetchLatestServerTime: (serverTime) => {
+          console.log(serverTime);
+        dispatch({
+          type: FETCH_SERVER_TIME,
+          payload: serverTime
+        })
+      },
+  
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeNavBar);
+//export default HomeNavBar;
