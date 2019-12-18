@@ -23,7 +23,7 @@ class UserDashboard extends Component {
 
     componentDidMount(){
         
-        const url = BASE_URL+"/reservationsByEmail/?email="+this.state.userid;
+        const url = BASE_URL+"/guestReservations/?email="+this.state.userid;
         axios.get(url).then((response)=>{
                 console.log(response);
                 if(response.status === 200){
@@ -150,7 +150,7 @@ class UserDashboard extends Component {
                             <select name="reservationType" className="no-bg" style={{ border: '0.3px solid grey' }}  value={this.state.condition} onChange={this.conditionChangeHandler}> >
                                 <option selected value="ALL">ALL</option>
                                 <option value="FUTURE">UPCOMING</option>
-                                <option value="PRESENT">PRESENT</option>
+                                <option value="PRESENT">ONGOING</option>
                                 <option value="PAST">PAST</option>
                             </select>
                         </div>

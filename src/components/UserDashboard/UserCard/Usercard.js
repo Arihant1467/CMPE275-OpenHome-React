@@ -125,7 +125,16 @@ class UserCard extends Component {
         this.setState({
           checkInState : true
         } );
-        //Grey out checkin
+
+
+        this.setState({
+          cancelled : true
+        } );
+
+      
+
+
+       
       })
       .catch(error =>
         { 
@@ -158,6 +167,10 @@ class UserCard extends Component {
 
         this.setState({
           checkoutState : true
+        } );
+
+        this.setState({
+          cancelled : true
         } );
       
       })
@@ -194,6 +207,13 @@ class UserCard extends Component {
           cancelled : true
         } );
 
+        this.setState({
+          checkoutState : true
+        } );
+
+        this.setState({
+          checkInState : true
+        } );
       })
       .catch(error =>
         { 
@@ -222,7 +242,11 @@ class UserCard extends Component {
 
     console.log("i m in rating")
 
-      if(!this.state.reviews ) {
+    if(trip.checkOut == null) {
+        return ;
+    }
+
+      else if(!this.state.reviews ) {
         console.log("inside if")
         return (
           <div  style = { { left : "1000px", top : "10px"}}>
