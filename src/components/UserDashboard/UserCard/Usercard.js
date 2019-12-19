@@ -418,7 +418,7 @@ class UserCard extends Component {
             </div>
 
             <div className="row">
-              <h3> <Link target="_blank" to={url}>View Your Reserved Place </Link></h3>
+              <h3><Link target="_blank" to={url}>View Your Reserved Place </Link></h3>
             </div>
            
           </div>
