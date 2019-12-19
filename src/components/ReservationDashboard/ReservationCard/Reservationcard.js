@@ -50,6 +50,15 @@ class ReservationCard extends Component {
         reviews : trip.userReview != null
       } );
 
+
+      this.setState({
+        rating : trip.userRating
+      } );
+
+      this.setState({
+        review : trip.userReview
+      } );
+
       let temp ="";
       if(trip.isCancelled)
         temp = "Reservation is cancelled"
@@ -281,7 +290,7 @@ class ReservationCard extends Component {
 
        <strong> &nbsp;&nbsp;&nbsp;&nbsp; Review - </strong>
 
-        {trip.userReview}
+       {this.state.review}
 
        
         </div>
