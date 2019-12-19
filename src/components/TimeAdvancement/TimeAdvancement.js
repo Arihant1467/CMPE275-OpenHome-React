@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import HomeNavBar from '../home/HomeNavBar/homenavbar.js';
 import {BASE_URL} from '../constants.js';
+import {FETCH_SERVER_TIME} from '../actions/types';
 import HomeAwayPlainNavBar from './../HomeAwayPlainNavBar/HomeAwayPlainNavBar.js';
 import Swal from 'sweetalert2';
 
@@ -44,13 +46,24 @@ class TimeAdvancement extends Component{
         this.setState({
             date : e.target.value
           } );
+    }
 
-  
+    fetchServerTime = ()=>{
+        const url = `${BASE_URL}/getTime`;
+        console.log(`For server time url : ${url}`);
+        axios.get(url).then((response)=>{
+            console.log("Getting time from server");
+            console.log(response.data);
+            if(response.data!=null){
+                const serverTime = response.data;
+                this.props.fetchLatestServerTime(serverTime);
+            }
+           
+        })
     }
 
 
     reset = () =>  {
-
         var date = new Date().getDate(); //Current Date
         var month = new Date().getMonth() + 1; //Current Month
         var year = new Date().getFullYear(); //Current Year
@@ -89,10 +102,7 @@ class TimeAdvancement extends Component{
     }
 
     changeTime =() =>{
-
-    
-
-        axios({
+       axios({
             method : 'PUT',
             url:`${BASE_URL}/changeTime`,
             headers:{
@@ -104,18 +114,14 @@ class TimeAdvancement extends Component{
           )
           .then((result) => {
     
-           
-
-
             Swal.fire({
               title:"Request success",
               text: "Date advanced"
           }).then(()=>{
-            console.log("result"+result)
+            console.log("result"+result);
+            this.fetchServerTime();
           });
-  
-           
-            //Grey out checkin
+
           })
           .catch(error =>
             { 
@@ -194,5 +200,27 @@ class TimeAdvancement extends Component{
         );
     }
 }
-  
-export default TimeAdvancement;
+
+
+const mapStateToProps = (state) => {
+  const { user,serverTime } = state;
+  return {
+      serverTime
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchLatestServerTime: (serverTime) => {
+        console.log(serverTime);
+      dispatch({
+        type: FETCH_SERVER_TIME,
+        payload: serverTime
+      })
+    },
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimeAdvancement);
+//export default TimeAdvancement;
