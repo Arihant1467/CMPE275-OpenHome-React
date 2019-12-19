@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class PropertyOverviewRight extends Component {
     constructor(props){
@@ -46,12 +47,22 @@ class PropertyOverviewRight extends Component {
         const { userId,contactNumber } = data;
         const { numberOfWeekends,numberOfWeekdays} = this.getNumberOfWeekDaysAndWeekEnds(startDate,endDate);
         const bookingCost = numberOfWeekends*weekendRent + numberOfWeekdays*weekRent;
-        const disableBookNow = !this.props.userLoggedIn;
+        
+        
+
+        const enableBookNow = (this.props.userLoggedIn && JSON.stringify(this.props.user)!=="{}" && this.props.user.email.indexOf("@sjsu.edu")==-1);
+        console.log(enableBookNow);
         let cardUrl = null;
-        if(!disableBookNow){
+        if(enableBookNow){
             cardUrl= <Link target="_blank" className="btn btn-primary btn-lg btn-block" to={`/registerCard/${this.props.user.userid}`}>Add Card</Link>;
         }
-        
+
+        // const start = new Date(startDate).toLocaleDateString();
+        // const end = new Date(endDate).toLocaleDateString();
+
+        const start = new Date(startDate).toISOString().split("T")[0];
+        const end = new Date(endDate).toISOString().split("T")[0];
+
         return (  
             <div>
                 <div className="row pl-2">
@@ -68,11 +79,11 @@ class PropertyOverviewRight extends Component {
                 <div className="row justify-content-center">
                     <div className="col-md-6 check-in-col-border">
                         <p className="clearfix mb-0 right-p">Check in</p>
-                        <h2 className="mt-0 right-h2">{new Date(startDate).toLocaleDateString()}</h2>
+        <h2 className="mt-0 right-h2">{start}</h2>
                     </div>
                     <div className="col-md-6 check-out-col-border">
                         <p className="clearfix mb-0 right-p">Check Out</p>
-                        <h2 className="mt-0 right-h2">{new Date(endDate).toLocaleDateString()}</h2>
+                        <h2 className="mt-0 right-h2">{end}</h2>
                     </div>
                 </div>
                 <div className="row justify-content-center guests-in-col-border">
@@ -86,7 +97,7 @@ class PropertyOverviewRight extends Component {
 
                 <div className="row justify-content-center mt-2">
                     <div className="col-md-6">
-                        <button className="btn btn-primary btn-lg btn-block" disabled={disableBookNow} onClick={this.bookNowHandler} >Book Now</button>
+                        <button className="btn btn-primary btn-lg btn-block" disabled={!enableBookNow} onClick={this.bookNowHandler} >Book Now</button>
                     </div>
                     <div className="col-md-6">
                             {cardUrl}
@@ -99,5 +110,14 @@ class PropertyOverviewRight extends Component {
         );
     }
 }
- 
-export default PropertyOverviewRight;
+
+
+//export default PropertyOverviewRight;
+const mapStateToProps = (state) => {
+    const { user } = state;
+    return {
+      user,
+    }
+}
+
+export default connect(mapStateToProps, null)(PropertyOverviewRight);
