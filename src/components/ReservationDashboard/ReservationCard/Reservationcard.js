@@ -172,10 +172,12 @@ class ReservationCard extends Component {
 
     cancel =(postingid)=> e=> {
 
-      console.log("Cancelling reservation"+postingid)
+      console.log("Cancelling reservation"+postingid);
+      // const url = `${BASE_URL}/cancelReservation/${postingid}`;
+      const url = `${BASE_URL}/cancelByHost/${postingid}`;
       axios({
         method : 'PUT',
-        url:`${BASE_URL}/cancelReservation/${postingid}`,
+        url:url,
         headers:{
           'Content-Type' : 'application/json',
           
