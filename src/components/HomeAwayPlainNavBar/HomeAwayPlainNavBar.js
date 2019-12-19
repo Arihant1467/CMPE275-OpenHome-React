@@ -39,8 +39,8 @@ class HomeAwayPlainNavBar extends Component {
         // const sec = serverTime.getSeconds(); //Current Seconds
         console.log("server Time in navbar")
         console.log(serverTime);
-        const {year,dayOfMonth,monthValue,hours,min,sec} = serverTime
-        const timeString = year + '/' + monthValue + '/' + dayOfMonth + ' ' + hours + ':' + min + ':' + sec; 
+        const {year,dayOfMonth,monthValue,hour,minute,second} = serverTime
+        const timeString = year + '/' + monthValue + '/' + dayOfMonth + ' ' + hour + ':' + minute + ':' + second; 
         console.log(`TImestring: ${timeString}`);
 
         return (
@@ -70,6 +70,8 @@ class HomeAwayPlainNavBar extends Component {
 
 const mapStateToProps = (state) => {
     const { user,serverTime } = state;
+    console.log("In map state to props of home advanced");
+    console.log(JSON.stringify(serverTime));
     return {
         user,
         serverTime
@@ -79,7 +81,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
       fetchLatestServerTime: (serverTime) => {
-          console.log(serverTime);
         dispatch({
           type: FETCH_SERVER_TIME,
           payload: serverTime

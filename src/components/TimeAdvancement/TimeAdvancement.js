@@ -50,10 +50,11 @@ class TimeAdvancement extends Component{
 
     fetchServerTime = ()=>{
         const url = `${BASE_URL}/getTime`;
+        console.log("in time advancemnet js");
         console.log(`For server time url : ${url}`);
         axios.get(url).then((response)=>{
-            console.log("Getting time from server");
-            console.log(response.data);
+            
+            console.log(JSON.stringify(response.data));
             if(response.data!=null){
                 const serverTime = response.data;
                 this.props.fetchLatestServerTime(serverTime);
@@ -113,13 +114,13 @@ class TimeAdvancement extends Component{
           }
           )
           .then((result) => {
-    
+            this.fetchServerTime();
             Swal.fire({
               title:"Request success",
               text: "Date advanced"
           }).then(()=>{
             console.log("result"+result);
-            this.fetchServerTime();
+           
           });
 
           })
@@ -204,15 +205,18 @@ class TimeAdvancement extends Component{
 
 const mapStateToProps = (state) => {
   const { user,serverTime } = state;
+  console.log("printing server time from redux");
+  console.log(JSON.stringify(serverTime));
   return {
-      serverTime
+    user,
+    serverTime
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchLatestServerTime: (serverTime) => {
-        console.log(serverTime);
+        
       dispatch({
         type: FETCH_SERVER_TIME,
         payload: serverTime

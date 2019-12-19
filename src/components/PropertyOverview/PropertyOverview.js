@@ -147,7 +147,6 @@ class PropertyOverview extends Component {
         // let cardUrl = null;
         // cardUrl= <Link target="_blank" className="btn btn-primary btn-lg btn-block" to={`/registerCard/${this.props.user.userid}`}>Add Card</Link>;
 
-
         if (this.state.booked) {
             redirectVar = <Redirect to="/booking" />
         }

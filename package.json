@@ -32,6 +32,7 @@
     "redux-devtools": "^3.4.1",
     "redux-form": "^7.4.2",
     "redux-promise": "^0.6.0",
+    "redux-state-sync": "^3.0.0",
     "redux-thunk": "^2.3.0",
     "serialize-form": "^1.1.4",
     "sweetalert2": "^9.5.3"

@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { withReduxStateSync } from 'redux-state-sync'
 import {UserProfileReducer,LoginSignUpErrorReducer} from './ProfileReducer.js';
 import {SearchFieldsReducer} from './SearchFieldsReducer.js';
 import {SearchResultsReducer} from './SearchResultsReducer.js';
@@ -14,9 +15,9 @@ export const appState = {
       monthValue : new Date().getMonth() + 1,
       dayOfMonth: new Date().getDate(),
       year : new Date().getFullYear(),
-      hours : new Date().getHours(),
-      min : new Date().getMinutes(),
-      sec : new Date().getSeconds(),
+      hour : new Date().getHours(),
+      minute : new Date().getMinutes(),
+      second : new Date().getSeconds(),
     }
 }
 
@@ -29,4 +30,5 @@ const rootReducer = combineReducers({
   serverTime: TimeReducer
 });
 
-export default rootReducer;
+//export default rootReducer;
+export default withReduxStateSync(rootReducer);

@@ -64,8 +64,8 @@ class HomeNavBar extends Component {
             hostReservationsurl = `/hostReservations/${userid}`
         }
         const serverTime = this.props.serverTime;
-        const {year,dayOfMonth,monthValue,hours,min,sec} = serverTime
-        const timeString = year + '/' + monthValue + '/' + dayOfMonth + ' ' + hours + ':' + min + ':' + sec; 
+        const {year,dayOfMonth,monthValue,hour,minute,second} = serverTime
+        const timeString = year + '/' + monthValue + '/' + dayOfMonth + ' ' + hour + ':' + minute + ':' + second; 
         console.log(`TImestring: ${timeString}`);
         const isHost = (JSON.stringify(this.props.user)!=="{}" && this.props.user.usertype==="HOST")
         const isGuest = (JSON.stringify(this.props.user)!=="{}" && this.props.user.usertype==="GUEST")
@@ -138,7 +138,8 @@ class HomeNavBar extends Component {
 
 const mapStateToProps = (state) => {
     const { user,serverTime } = state;
-    console.log("In mapStateToProps of navbar");
+    console.log("In map state to props of home advanced");
+    console.log(JSON.stringify(serverTime));
     console.log(state.serverTime);
     return {
         user,

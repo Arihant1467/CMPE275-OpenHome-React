@@ -23,10 +23,10 @@ import Transaction from './TransactionHistory/Transaction';
 import ReservationDashboard from './ReservationDashboard/ReservationDashboard.js'
 
 
-
-
 class Main extends Component {
+
     render(){
+
         return(
             <Provider store={store} >
             <Switch>
