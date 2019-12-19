@@ -117,7 +117,14 @@ class UserCard extends Component {
       )
       .then((result) => {
         console.log("result"+result)
-        alert("Your checkin is complete")
+     //  alert("Your checkin is complete")
+
+        Swal.fire({
+          title: "Check in complete!",
+          text: "Your checkin is complete"
+      }).then(()=>{
+        console.log("reservation rating saved");
+      });
 
         this.setState({
           status : "Checkin complete"
@@ -139,8 +146,14 @@ class UserCard extends Component {
       })
       .catch(error =>
         { 
-            
-            alert(error.response.data)
+
+          Swal.fire({
+            title: "Error",
+            text: error.response.data
+        }).then(()=>{
+          console.log(error.response.data);
+        });
+      
         }
       )
     }
@@ -160,8 +173,15 @@ class UserCard extends Component {
       )
       .then((result) => {
         console.log("result"+result)
-        alert("Your checkout is complete")
+     //   alert("Your checkout is complete")
 
+
+     Swal.fire({
+      title: "Check out complete!",
+      text: "Your checkout is complete"
+  }).then(()=>{
+    console.log("Your checkout is complete");
+  })
         this.setState({
           status : "Checkout complete"
         } );
@@ -178,7 +198,12 @@ class UserCard extends Component {
       .catch(error =>
         { 
             
-            alert(error.response.data)
+          Swal.fire({
+            title:"Error",
+            text: error.response.data
+        }).then(()=>{
+          console.log(error.response.data);
+        });
         }
       )
     }
@@ -198,7 +223,14 @@ class UserCard extends Component {
       )
       .then((result) => {
         console.log("result"+result)
-        alert("Your reservation is cancelled")
+      //  alert("Your reservation is cancelled")
+
+      Swal.fire({
+        title: "Reservation cancelled!",
+        text: "Your reservation is cancelled"
+    }).then(()=>{
+      console.log("Your reservation is cancelled");
+    });
 
         this.setState({
           status : "Reservation is cancelled"
@@ -217,9 +249,15 @@ class UserCard extends Component {
         } );
       })
       .catch(error =>
-        { 
-            
-            alert(error.response.data)
+        {  
+        
+          Swal.fire({
+            title:"Error",
+            text: error.response.data
+        }).then(()=>{
+          console.log(error.response.data);
+        });
+        
         }
       )
     }
@@ -247,7 +285,7 @@ class UserCard extends Component {
         return ;
     }
 
-      else if(!this.state.reviews ) {
+     else if(!this.state.reviews ) {
         console.log("inside if")
         return (
           <div  style = { { left : "1000px", top : "10px"}}>
