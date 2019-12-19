@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Axios from 'axios';
+import {BASE_URL} from '../../constants.js';
+
 
 class PropertyOverviewRight extends Component {
     constructor(props){
         super(props)
-        
+     
+
         this.bookNowHandler = this.bookNowHandler.bind(this);
     }
+
+   
 
     bookNowHandler = (e)=> {
         this.props.onSave();

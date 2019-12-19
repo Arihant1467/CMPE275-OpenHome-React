@@ -2,12 +2,49 @@ import React, { Component } from 'react';
 import serialize from 'form-serialize';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Axios from 'axios';
+import {BASE_URL} from '../../../constants.js';
 
 
 class PropertyPricing extends Component {
     constructor(props){
         super(props);
+
+        this.state = {
+            cardState: false
+        }
         
+    }
+
+    componentDidMount() {
+
+        var url= BASE_URL+'/getPayments'
+        console.log(url)
+        var data = {
+            
+                "email" : this.props.user.email,
+              "cardnumber" :0,
+                "cvv" : 0,
+              "balance" : 0.0,
+               "expiryDate": ""
+            
+            
+        }
+        
+        Axios.post(url,data)
+        .then(response =>{ 
+ 
+            if(response.data) {
+
+                this.setState({ cardState : true});
+            console.log("card state"+ this.state.cardState)
+        
+        }
+            console.log(response.data)}
+            )
+        .catch(error => console.log(error))
+
+    
     }
 
     saveActionHandle =(e)=>{
@@ -32,8 +69,8 @@ class PropertyPricing extends Component {
         }
 
         let cardUrl = null;
-        if(JSON.stringify(this.props.user)!=="{}"){
-            cardUrl= <Link target="_blank" className="btn btn-primary btn-lg btn-block" to={`/registerCard/${this.props.user.userid}`}>Add Card</Link>;
+        if(JSON.stringify(this.props.user)!=="{}" && !this.state.cardState){
+            cardUrl= <Link target="_blank" className="btn btn-primary btn-lg btn-block" to={`/registerCard/${this.props.user.userid}`} >Add Card</Link>;
         }
 
         return (

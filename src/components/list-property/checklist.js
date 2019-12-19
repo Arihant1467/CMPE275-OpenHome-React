@@ -21,7 +21,9 @@ class Checklist extends Component {
         super(props);
 
         const hash = this.props.location.hash
+   
         this.state = {
+
 
             complete: false,
             currentpage: {
@@ -60,6 +62,8 @@ class Checklist extends Component {
         this.savePropertyPhotosHandle = this.savePropertyPhotosHandle.bind(this);
         this.savePropertyPricingHandle = this.savePropertyPricingHandle.bind(this);
     }
+
+
 
     handlePageLocation = (pageLoc) => (e) => {
 
