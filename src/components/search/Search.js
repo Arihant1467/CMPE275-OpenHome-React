@@ -22,6 +22,8 @@ class Search extends Component {
         super(props);
 
         const { startDate, endDate, cityName, zipcode } = queryString.parse(this.props.location.search);
+        console.log(new Date(startDate).getTime());
+        console.log( new Date(endDate).getTime());
         this.state = {
 
             startDate: new Date(startDate),
@@ -72,8 +74,8 @@ class Search extends Component {
         
         const dayAvailibility = getWeekRepresentation(startDate,endDate);
         const body = {
-            startDate: startDate.getTime(),
-            endDate: endDate.getTime(),
+            startDate: startDate.getTime() + 8*60*1000,
+            endDate: endDate.getTime() + 8*60*1000,
             cityName,
             zipcode,
             fromPrice,
@@ -156,7 +158,7 @@ class Search extends Component {
             sharingType: sharingType==="none" ? null:sharingType,
             propertyType: propertyType==="none" ? null:propertyType,
             wifi: wifi==="none"? null : wifi,
-            description: description == null ? this.state.description : description
+            description: description == null ? "" : description
         };
         console.log(`Body sent to filter search ${JSON.stringify(body)}`);
 
