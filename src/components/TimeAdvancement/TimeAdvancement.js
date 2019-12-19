@@ -90,6 +90,7 @@ class TimeAdvancement extends Component{
           .then((result) => {
             console.log("result"+result)
             alert("Date set back to current time");
+            this.fetchServerTime();
            
             //Grey out checkin
           })
