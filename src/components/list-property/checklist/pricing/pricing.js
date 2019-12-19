@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import serialize from 'form-serialize';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 class PropertyPricing extends Component {
@@ -27,6 +29,11 @@ class PropertyPricing extends Component {
     render() { 
         var showThisBlock = {
             display: this.props.visible ? 'block':'none'
+        }
+
+        let cardUrl = null;
+        if(JSON.stringify(this.props.user)!=="{}"){
+            cardUrl= <Link target="_blank" className="btn btn-primary btn-lg btn-block" to={`/registerCard/${this.props.user.userid}`}>Add Card</Link>;
         }
 
         return (
@@ -110,10 +117,14 @@ class PropertyPricing extends Component {
                 </div>
 
                 <div className="row justify-content-center mt-2">
+
+
                     <div className="col-md-2">
                         <button className="btn btn-default btn-block btn-rounded btn-cancel" onClick={this.onCancel}>Cancel </button>
                     </div>
-                    <div className="col-md-2"></div>
+                    <div className="col-md-2">
+                        {cardUrl}
+                    </div>
 
                     <div className="col-md-2">
                         <button type="submit" className="btn btn-primary btn-block btn-rounded btn-save" >Done </button>
@@ -127,5 +138,14 @@ class PropertyPricing extends Component {
         );
     }
 }
- 
-export default PropertyPricing;
+
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+    }
+}
+
+
+export default connect(mapStateToProps,null)(PropertyPricing)
+//export default PropertyPricing;

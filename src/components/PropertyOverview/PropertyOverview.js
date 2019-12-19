@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ImageGallery from './ImageGallery/ImageGallery.js'
 import PropertyOverviewLeft from './PropertyOverviewLeft/PropertyOverviewLeft';
 import PropertyOverviewRight from './PropertyOverviewRight/PropertyOverviewRight.js';
@@ -143,6 +144,9 @@ class PropertyOverview extends Component {
         let renderRightView = null
         let renderLeftView = null
         let renderMessageBar = null
+        // let cardUrl = null;
+        // cardUrl= <Link target="_blank" className="btn btn-primary btn-lg btn-block" to={`/registerCard/${this.props.user.userid}`}>Add Card</Link>;
+
 
         if (this.state.booked) {
             redirectVar = <Redirect to="/booking" />
@@ -172,6 +176,7 @@ class PropertyOverview extends Component {
                     <div className="col-md-4 .add-border-property-selected" id="right">
                         {renderRightView}
                     </div>
+                    
                 </div>
 
 
