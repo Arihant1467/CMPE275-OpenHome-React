@@ -9,10 +9,42 @@ class PropertyOverviewRight extends Component {
     constructor(props){
         super(props)
      
-
+        this.state = {
+            cardState: false
+        }
         this.bookNowHandler = this.bookNowHandler.bind(this);
     }
 
+    componentDidMount() {
+
+        var url= BASE_URL+'/getPayments'
+        console.log(url)
+        var data = {
+            
+                "email" : this.props.user.email,
+              "cardnumber" :0,
+                "cvv" : 0,
+              "balance" : 0.0,
+               "expiryDate": ""
+            
+            
+        }
+        
+        Axios.post(url,data)
+        .then(response =>{ 
+ 
+            if(response.data) {
+
+                this.setState({ cardState : true});
+            console.log("card state"+ this.state.cardState)
+        
+        }
+            console.log(response.data)}
+            )
+        .catch(error => console.log(error))
+
+    
+    }
    
 
     bookNowHandler = (e)=> {
@@ -59,7 +91,7 @@ class PropertyOverviewRight extends Component {
         const enableBookNow = (this.props.userLoggedIn && JSON.stringify(this.props.user)!=="{}" && this.props.user.email.indexOf("@sjsu.edu")==-1);
         console.log(enableBookNow);
         let cardUrl = null;
-        if(enableBookNow){
+        if(enableBookNow && !this.state.cardState){
             cardUrl= <Link target="_blank" className="btn btn-primary btn-lg btn-block" to={`/registerCard/${this.props.user.userid}`}>Add Card</Link>;
         }
 
